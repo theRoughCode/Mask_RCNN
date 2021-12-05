@@ -46,7 +46,7 @@ class PillsConfig(Config):
 
 
 class PillsDataset(utils.Dataset):
-    def load_pills(self, img_paths, bg_paths, count, height=128, width=128):
+    def load_pills(self, img_paths, bg_paths, white_bg_paths, count, height=128, width=128):
         """Generate the requested number of synthetic images.
         count: number of images to generate.
         height, width: the size of the generated images.

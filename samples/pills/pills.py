@@ -109,4 +109,4 @@ class PillsDataset(utils.Dataset):
         overlaid = cv2.resize(overlaid, (width, height), interpolation=cv2.INTER_AREA)
         mask = cv2.resize(mask, (width, height), interpolation=cv2.INTER_AREA)
 
-        return overlaid, mask, bg_path
+        return overlaid, mask[:, :, :1], bg_path

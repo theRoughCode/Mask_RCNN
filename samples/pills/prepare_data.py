@@ -179,4 +179,4 @@ def overlay_images(pill, bg, bg_dim=600, padding=10):
   blur_size = random.randint(0, 6) * 2 + 1  # blur size = 1, 3, ..., 11, 13
   out = cv2.GaussianBlur(out, (blur_size, blur_size), 0)
 
-  return out, mask[:, :, :1]
+  return out, mask

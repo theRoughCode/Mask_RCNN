@@ -61,7 +61,7 @@ class PillsDataset(utils.Dataset):
             overlaid, mask, bg_path = self.random_image(height, width, img_path, bg_paths, white_bg_paths)
             self.add_image("pills", image_id=i, path=img_path,
                            width=width, height=height,
-                           bg_path=bg_path, mask=mask)
+                           bg_path=bg_path, image=overlaid, mask=mask)
 
     def load_image(self, image_id):
         """Generate an image from the specs of the given image ID.
@@ -69,7 +69,7 @@ class PillsDataset(utils.Dataset):
         in this case it generates the image on the fly from the
         specs in image_info.
         """
-        super().load_image(image_id)
+        return self.image_info[image_id]["image"]
 
     def image_reference(self, image_id):
         """Return the shapes data of the image."""

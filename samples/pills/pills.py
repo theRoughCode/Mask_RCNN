@@ -88,7 +88,7 @@ class PillsDataset(utils.Dataset):
 
         mask = info["mask"]
 
-        return mask.astype(np.bool), mask.astype(np.int32)
+        return mask.astype(np.bool), np.ones([mask.shape[-1]], dtype=np.int32)
 
     def random_image(self, height, width, img_path, bg_paths, white_bg_paths, white_bg_prob=0.3):
         # Pick random background

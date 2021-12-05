@@ -2270,7 +2270,7 @@ class MaskRCNN(object):
             "*epoch*", "{epoch:04d}")
 
     def train(self, train_dataset, val_dataset, learning_rate, epochs, layers,
-              augmentation=None, custom_callbacks=None, no_augmentation_sources=None, num_workers=1):
+              augmentation=None, custom_callbacks=None, no_augmentation_sources=None, workers=1):
         """Train the model.
         train_dataset, val_dataset: Training and validation Dataset objects.
         learning_rate: The learning rate to train with

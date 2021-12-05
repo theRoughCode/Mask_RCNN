@@ -88,7 +88,9 @@ class PillsDataset(utils.Dataset):
 
         mask = info["mask"]
 
-        return mask.astype(np.bool), np.ones([mask.shape[-1]], dtype=np.int32)
+        # Return mask, and array of class IDs of each instance. Since we have
+        # one class ID only, we return an array of 1s
+        return mask.astype(np.uint8), np.ones([mask.shape[-1]], dtype=np.int32)
 
     def random_image(self, height, width, img_path, bg_paths, white_bg_paths, white_bg_prob=0.3):
         # Pick random background

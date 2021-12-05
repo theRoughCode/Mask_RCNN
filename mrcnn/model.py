@@ -2270,7 +2270,7 @@ class MaskRCNN(object):
             "*epoch*", "{epoch:04d}")
 
     def train(self, train_dataset, val_dataset, learning_rate, epochs, layers,
-              augmentation=None, custom_callbacks=None, no_augmentation_sources=None):
+              augmentation=None, custom_callbacks=None, no_augmentation_sources=None, num_workers=1):
         """Train the model.
         train_dataset, val_dataset: Training and validation Dataset objects.
         learning_rate: The learning rate to train with
@@ -2345,14 +2345,6 @@ class MaskRCNN(object):
         log("Checkpoint Path: {}".format(self.checkpoint_path))
         self.set_trainable(layers)
         self.compile(learning_rate, self.config.LEARNING_MOMENTUM)
-
-        # Work-around for Windows: Keras fails on Windows when using
-        # multiprocessing workers. See discussion here:
-        # https://github.com/matterport/Mask_RCNN/issues/13#issuecomment-353124009
-        if os.name == 'nt':
-            workers = 0
-        else:
-            workers = multiprocessing.cpu_count()
 
         self.keras_model.fit(
             train_generator,

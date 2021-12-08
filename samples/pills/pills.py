@@ -59,9 +59,14 @@ class PillsDataset(utils.Dataset):
         for i in range(count):
             img_path = img_paths[i % num_images]
             overlaid, mask, bg_path = self.random_image(height, width, img_path, bg_paths, white_bg_paths)
-            self.add_image("pills", image_id=i, path=img_path,
-                           width=width, height=height,
-                           bg_path=bg_path, image=overlaid, mask=mask)
+
+            # Add image only if mask is valid
+            if np.sum(mask) > 0:
+                self.add_image("pills", image_id=i, path=img_path,
+                            width=width, height=height,
+                            bg_path=bg_path, image=overlaid, mask=mask)
+            else:
+                print("Failed to get mask.", img_path)
 
     def load_image(self, image_id):
         """Generate an image from the specs of the given image ID.

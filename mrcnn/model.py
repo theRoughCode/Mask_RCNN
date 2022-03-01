@@ -1548,8 +1548,9 @@ def build_rpn_targets(image_shape, anchors, gt_class_ids, gt_boxes, config):
         gt_center_y = gt[0] + 0.5 * gt_h
         gt_center_x = gt[1] + 0.5 * gt_w
         # Anchor
-        a_h = a[2] - a[0]
-        a_w = a[3] - a[1]
+        eps = 0.0001
+        a_h = a[2] - a[0] + eps
+        a_w = a[3] - a[1] + eps
         a_center_y = a[0] + 0.5 * a_h
         a_center_x = a[1] + 0.5 * a_w
 

@@ -49,6 +49,11 @@ def extract_bboxes(mask):
             # x2 and y2 should not be part of the box. Increment by 1.
             x2 += 1
             y2 += 1
+
+            # If the width or height is negative, this is an invalid box. Set it
+            # to zeros
+            if x1 >= x2 or y1 >= y2:
+                x1, x2, y1, y2 = 0, 0, 0, 0
         else:
             # No mask for this instance. Might happen due to
             # resizing or cropping. Set bbox to zeros
